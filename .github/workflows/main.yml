@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: 
+    - main
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Java
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      # 3. Compile Hello.java
+      - name: Compile Hello.java
+        run: javac Hello.java
+
+      # 4. Run the program
+      - name: Run the program
+        run: java Hello
